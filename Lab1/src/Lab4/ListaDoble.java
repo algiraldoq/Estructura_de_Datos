@@ -7,8 +7,11 @@ public class ListaDoble {
 
 	public ListaDoble() {
 		super();
+		this.head = null;
+	    this.tail = null;
+	    this.size = 0; 
 	}
-
+	
 	public Integer Size() {
 		return size;
 	}
@@ -26,7 +29,7 @@ public class ListaDoble {
 	}
 
 	public void addFirst(Object e) {
-		NodoDoble n = new NodoDoble();
+		NodoDoble n = new NodoDoble(e);
 		if (isEmpty()) {
 			head = n;
 			tail = n;
@@ -39,7 +42,7 @@ public class ListaDoble {
 	}
 
 	public void addLast(Object e) {
-		NodoDoble n = new NodoDoble();
+		NodoDoble n = new NodoDoble(e);
 		if (isEmpty()) {
 			head = n;
 			tail = n;
