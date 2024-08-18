@@ -165,11 +165,50 @@ public class empleados {
 	}
 
 	public static void eliminarUsuarios() {
+		System.out.println("¿Cual es el id del usuario que desea Eliminar?");
+		long id = scanner.nextLong();
+		NodoDoble current = lstEmpleados.first();
+		NodoDoble currentPassword = lstPasswords.first();
+		while (current != null) {
+			Usuario u = (Usuario) current.getData();
+			if (u.getId().equals(id)) {
+				lstEmpleados.remove(current);
+				break;
+			}
+			current = current.getNext();
+		}
+		while (currentPassword != null) {
+			String[] clave = (String[]) currentPassword.getData();
+			if (clave[0].equalsIgnoreCase(String.valueOf(id))) {
+				lstPasswords.remove(currentPassword);
+				System.out.println("Usuario Eliminado" + id);
+				break;
+			}
+			currentPassword = currentPassword.getNext();
+		}
 
 	}
 
-	public static void cambiarContrseñas() {
-
+	public static void cambiarContraseñas() {
+		System.out.println("¿Cual es el id del usuario que desea Cambiar Contraseña?");
+		long id = scanner.nextLong();
+		Usuario u = buscarEmpleado(id);
+		if (u != null) {
+			System.out.println("¿Cual es la nueva clave?");
+			String contraseña = scanner.nextLine();
+			NodoDoble currentPassword = lstPasswords.first();
+			while (currentPassword != null) {
+				String[] clave = (String[]) currentPassword.getData();
+				if (clave[0].equalsIgnoreCase(String.valueOf(id))) {
+					clave[1] = contraseña;
+					currentPassword.setData(clave);
+					break;
+				}
+				currentPassword = currentPassword.getNext();
+			}
+		} else {
+			System.out.println("Usuario no Existe");
+		}
 	}
 
 	public static void main(String[] args) {
@@ -192,29 +231,39 @@ public class empleados {
 			String contraseña = scanner.nextLine();
 			EmpleadoVerificado = autenticarEmpleado(usuario.getId(), contraseña);
 		}
-
-		if (EmpleadoVerificado[2].equalsIgnoreCase("empleado")) {
-			System.out.println("1.ver bandeja de Mensajes \n2.enviarMensaje");
-			int desicion = scanner.nextInt();
-			if (desicion == 1) {
-				bandejaEntrada.mostrarBandejaEntrada(usuario);
-			} else if (desicion == 2) {
-				enviarMensaje();
+		Boolean HacerAlgoMas = Boolean.TRUE;
+		while (HacerAlgoMas) {
+			if (EmpleadoVerificado[2].equalsIgnoreCase("empleado")) {
+				System.out.println("1.ver bandeja de Mensajes \n2.enviarMensaje");
+				int desicion = scanner.nextInt();
+				if (desicion == 1) {
+					bandejaEntrada.mostrarBandejaEntrada(usuario);
+				} else if (desicion == 2) {
+					enviarMensaje();
+				}
+			} else if (EmpleadoVerificado[2].equalsIgnoreCase("Administrador")) {
+				System.out.println(
+						"1.ver bandeja de Mensajes \n2.enviarMensaje\\n3.Cambiar contraseñas\\n4.eliminar usuarios");
+				int desicion = scanner.nextInt();
+				if (desicion == 1) {
+					bandejaEntrada.mostrarBandejaEntrada(usuario);
+				} else if (desicion == 2) {
+					enviarMensaje();
+				} else if (desicion == 3) {
+					cambiarContraseñas();
+				} else if (desicion == 4) {
+					eliminarUsuarios();
+				}
 			}
-		} else if (EmpleadoVerificado[2].equalsIgnoreCase("Administrador")) {
-			System.out.println(
-					"1.ver bandeja de Mensajes \n2.enviarMensaje\\n3.Cambiar contraseñas\\n4.eliminar usuarios");
+			System.out.println("Desea Hacer algo mas? 1. Si 2. No");
 			int desicion = scanner.nextInt();
 			if (desicion == 1) {
-				bandejaEntrada.mostrarBandejaEntrada(usuario);
-			} else if (desicion == 2) {
-				enviarMensaje();
-			} else if (desicion == 3) {
-				cambiarContrseñas();
-			} else if (desicion == 4) {
-				eliminarUsuarios();
+				HacerAlgoMas = Boolean.TRUE;
+			} else {
+				HacerAlgoMas = Boolean.FALSE;
 			}
 		}
+
 		bandejaEntrada.toFile();
 		toFileEmpleados();
 		toFilePassWords();
