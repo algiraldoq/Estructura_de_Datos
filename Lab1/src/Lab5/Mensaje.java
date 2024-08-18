@@ -74,7 +74,7 @@ public class Mensaje {
 	}
 
 	public String mostrarMensaje(Mensaje mensaje) {
-		return "Titulo:" + mensaje.getTituloMensaje() + "\nMensaje" + mensaje.getMensaje();
+		return "Titulo:" + mensaje.getTituloMensaje() + "\nMensaje:" + mensaje.getMensaje();
 	}
 
 	public String guardar() {

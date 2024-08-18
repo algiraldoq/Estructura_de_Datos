@@ -1,6 +1,7 @@
-Pedro Perez, 9876543211, 1/1/1980, Cali, 3156789012, pperez@unal.edu.co, avenida5 23-45 Granada Cali
+Ana Gomez, 1112223334, 12/8/1990, Barranquilla, 3167890123, agomez@unal.edu.co, carrera20 12-34 Prado Barranquilla
+Maria Rodriguez, 1234567890, 25/6/1995, Bogota, 3101234567, mrodriguez@unal.edu.co, calle45 12-34 Macarena Bogota
+Carlos Lopez, 4321098765, 20/11/1982, Pereira, 3187654321, clopez@unal.edu.co, avenida30 12-34 Virginia Pereira
 Luis Hernandez, 5556667778, 28/2/1985, Medellin, 3178901234, lhernandez@unal.edu.co, calle30 12-34 Poblado Medellín
 Sofia Sanchez, 8765432109, 15/9/1992, Cartagena, 3198765432, ssanchez@unal.edu.co, calle10 12-34 Bocagrande Cartagena
-Carlos Lopez, 4321098765, 20/11/1982, Pereira, 3187654321, clopez@unal.edu.co, avenida30 12-34 Virginia Pereira
-Maria Rodriguez, 1234567890, 25/6/1995, Bogota, 3101234567, mrodriguez@unal.edu.co, calle45 12-34 Macarena Bogota
-Ana Gomez, 1112223334, 12/8/1990, Barranquilla, 3167890123, agomez@unal.edu.co, carrera20 12-34 Prado Barranquilla
+Pedro Perez, 9876543211, 1/1/1980, Cali, 3156789012, pperez@unal.edu.co, avenida5 23-45 Granada Cali
+Alejandro, 1000753146, 2/1/2002, medellin, 3053080620, alejoejemplo2@gmail.com, calle 66 36-36 villahermosa medellin

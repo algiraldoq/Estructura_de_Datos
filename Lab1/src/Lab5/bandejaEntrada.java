@@ -62,7 +62,7 @@ public class bandejaEntrada {
 		NodoDoble current = bandejaEntrada.first();
 		while (current != null) {
 			Mensaje mensajes = (Mensaje) current.getData();
-			if (tituloMensaje.equals(mensajes.getTituloMensaje())) {
+			if (tituloMensaje.equalsIgnoreCase(mensajes.getTituloMensaje())) {
 				System.out.println(mensajes.mostrarMensaje(mensajes));
 				return;
 			}
