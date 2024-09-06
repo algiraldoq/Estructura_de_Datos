@@ -35,8 +35,4 @@ public class queue {
 	    public NodoSimple first() {
 	        return list.first();
 	    }
-//	    // Método para obtener el primer nodo de la lista
-//	    public NodoSimple getFirstNode() {
-//	        return list.first();
-//	    }
 }
