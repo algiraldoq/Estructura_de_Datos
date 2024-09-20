@@ -69,19 +69,25 @@ public class BinaryTree {
 		} else {
 			QueueListaNodo Q = new QueueListaNodo();
 			Q.enqueue(root);
-			Nodo temp = root;
-			while (!Q.isEmpty() && left(Q.first()) != v && right(Q.first()) != v) {
+			Nodo temp = null;
+
+			while (!Q.isEmpty()) {
 				temp = (Nodo) Q.dequeue();
+				if (hasLeft(temp) && left(temp) == v) {
+					return temp; // El padre está a la izquierda
+				}
+				if (hasRight(temp) && right(temp) == v) {
+					return temp; // El padre está a la derecha
+				}
 				if (hasLeft(temp)) {
-					Q.enqueue(left(temp));
+					Q.enqueue(left(temp)); // Explorar el subárbol izquierdo
 				}
 				if (hasRight(temp)) {
-					Q.enqueue(right(temp));
+					Q.enqueue(right(temp)); // Explorar el subárbol derecho
 				}
-				return temp;
 			}
 		}
-		return null;
+		return null; // Retorna null si no se encuentra el padre
 	}
 
 	public void addRoot(Object e) {

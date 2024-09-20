@@ -24,5 +24,4 @@ public class BSTEntry {
 	public void setKey(int k) {
 		this.key = k;
 	}
-
 }
