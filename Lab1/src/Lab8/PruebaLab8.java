@@ -56,11 +56,11 @@ public class PruebaLab8 {
 
 		System.out.println("Metodo InOrder:");
 		arbol.inOrder(arbol, arbol.root());
-		
+
 		System.out.println("");
 		System.out.println("");
 		System.out.println("");
-		arbol.remove(4);
+		arbol.remove(10);
 		arbol.imprimirArbol();
 	}
 

@@ -58,22 +58,83 @@ public class BinarySearchTree extends BinaryTree {
 		}
 	}
 
-	public Nodo predecesor(Nodo v) {
-		Nodo temp = v.getLeft();
-		return maxNode(temp);
+	private Nodo minNode(Nodo v) {
+		while (hasLeft(v)) {
+			v = left(v);
+		}
+		return v;
 	}
 
 	public BSTEntry remove(int k) {
-		Nodo v = find(k);
-		BSTEntry temp = (BSTEntry) v.getData();
-		if (hasLeft(v) && hasRight(v)) {
-			Nodo w = predecesor(v);
-			v.setData(w.getData());
-			super.remove(w);
-		} else {
-			super.remove(v);
+		Nodo v = find(k); // Buscar el nodo a eliminar
+		if (v == null) {
+			return null; // Si el nodo no existe, retorna null
 		}
-		return temp;
+
+		BSTEntry temp = (BSTEntry) v.getData(); // Obtener los datos del nodo
+
+		// Caso 1: v es una hoja (sin hijos)
+		if (!hasLeft(v) && !hasRight(v)) {
+			Nodo p = parent(v);
+			if (p == null) {
+				// v es la raíz
+				super.addRoot(null); // Modificar la raíz
+			} else if (left(p) == v) {
+				p.setLeft(null);
+			} else {
+				p.setRight(null);
+			}
+		}
+		// Caso 2: v tiene solo hijo izquierdo
+		else if (!hasRight(v)) {
+			Nodo child = left(v);
+			Nodo p = parent(v);
+			if (p == null) {
+				// v es la raíz
+				super.addRoot(child.getData());
+			} else if (left(p) == v) {
+				p.setLeft(child);
+			} else {
+				p.setRight(child);
+			}
+		}
+		// Caso 3: v tiene solo hijo derecho
+		else if (!hasLeft(v)) {
+			Nodo child = right(v);
+			Nodo p = parent(v);
+			if (p == null) {
+				// v es la raíz
+				super.addRoot(child.getData());
+			} else if (left(p) == v) {
+				p.setLeft(child);
+			} else {
+				p.setRight(child);
+			}
+		}
+		// Caso 4: v tiene dos hijos
+		else {
+			// Encontrar el sucesor (el nodo más pequeño del subárbol derecho)
+			Nodo successor = minNode(right(v));
+			BSTEntry successorEntry = (BSTEntry) successor.getData();
+
+			// Copiar los datos del sucesor en el nodo actual
+			v.setData(successorEntry);
+
+			// Eliminar el sucesor manualmente
+			Nodo successorParent = parent(successor);
+			if (left(successorParent) == successor) {
+				successorParent.setLeft(successor.getRight()); // Sucesor está a la izquierda del padre
+			} else {
+				successorParent.setRight(successor.getRight()); // Sucesor está a la derecha del padre
+			}
+		}
+
+		return temp; // Retorna el nodo eliminado
+	}// s
+
+	public Nodo predecesor(Nodo v) {
+		Nodo temp = v.getLeft();
+		return maxNode(temp);
 	}
 
 	public void inOrder(BinaryTree t, Nodo v) {

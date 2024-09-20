@@ -27,8 +27,7 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return nombre + ", " + id + ", " + fecha_nacimiento.toString() + ", " + ciudad_nacimiento + ", " + tel + ", "
-				+ email + ", " + dir;
+		return nombre + ", " + id;
 	}
 
 	public String getNombre() {
